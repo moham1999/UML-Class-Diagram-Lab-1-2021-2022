@@ -73,7 +73,7 @@ public class Employee {
         return new Employee(this.name, this.workedHours, updatedSkills);
     }
 
-    public String print () {
+    public void print () {
         String messageToBePrinted = "Employee name:" + this.name + "\nHours worked: " + this.workedHours + "\nSkills: ";
         System.out.print(messageToBePrinted);
 
@@ -81,6 +81,5 @@ public class Employee {
             System.out.print(currentSkill.getName() + " ");
         }
         System.out.println("\n");
-        return messageToBePrinted;
     }
 }
