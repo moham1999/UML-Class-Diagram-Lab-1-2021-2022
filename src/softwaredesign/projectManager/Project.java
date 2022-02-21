@@ -7,6 +7,7 @@ public class Project {
 
     private final String name;
     private final UUID uuid;
+    private final Status status;
 
     private final List<TaskList> taskLists;
     private final List<Employee> employees;
@@ -16,6 +17,15 @@ public class Project {
         this.taskLists = taskLists;
         this.employees = employees;
         this.uuid = UUID.randomUUID();
+        this.status = decideStatus();
+    }
+
+    public Project(String name, List<TaskList> taskLists, List<Employee> employees, Status status) {
+        this.name = name;
+        this.taskLists = taskLists;
+        this.employees = employees;
+        this.uuid = UUID.randomUUID();
+        this.status = status;
     }
 
     public String getName() {
@@ -26,23 +36,25 @@ public class Project {
         return new Project(name, this.taskLists, this.employees);
     }
 
+    public Status getStatus() {return this.status;}
+
+    public Project setStatus(Status status) {
+        //Could add switch statement here, but since it's just two cases, this suffices.
+        if (status.getProgress() != Status.Progress.CREATED && !tasksAssigned()) {
+            System.err.println("No tasks assigned to the project. Status not changed");
+            return this;
+        }
+        else if (status.getProgress() == Status.Progress.EXECUTING && !isStarted()) {
+            System.err.println("No amount of hours worked on any of the tasks. Status not changed");
+            return this;
+        }
+
+        return new Project(this.name, this.taskLists, this.employees, status);
+    }
+
     public List<TaskList> getTaskLists() {
         return this.taskLists;
     }
-
-//    public Map<Task, TaskList> getAllTasks() {
-//        Map<Task, TaskList> taskMap = new HashMap<>();
-//
-//        for (TaskList t : taskLists) {
-//            Iterator<Task> it = t.iterator();
-//
-//            while (it.hasNext()) {
-//                taskMap.put(it.next(), t);
-//            }
-//        }
-//        return taskMap;
-
-//    }
 
     public Project addTaskList(TaskList taskList) {
         List<TaskList> copiedTaskList = new ArrayList<>(taskLists);
@@ -65,7 +77,10 @@ public class Project {
                 copiedTaskLists.add(index, newTaskList);
             }
             //Use try catch here
-            else System.out.println("Not found");
+            else {
+                System.err.println("Task list not found. Task list not replaced.");
+                return this;
+            }
         }
         return new Project(this.name, copiedTaskLists, this.employees);
     }
@@ -83,5 +98,23 @@ public class Project {
 
     public UUID getUUID () {
         return this.uuid;
+    }
+
+    private Status decideStatus () {
+        if (taskLists.isEmpty() && employees.isEmpty()) {
+            return new Status(Status.Progress.CREATED);
+        }
+        else return new Status(Status.Progress.CREATED);
+    }
+
+    private boolean tasksAssigned () {return taskLists.isEmpty();}
+
+    private boolean isStarted () {
+        for (TaskList currentTL: taskLists){
+            for (Task currentTask : currentTL.getTaskList()){
+                if (currentTask.started()) return true;
+            }
+        }
+        return false;
     }
 }

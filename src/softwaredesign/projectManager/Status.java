@@ -8,33 +8,52 @@ public class Status {
 
     //To change status of Progress, you can only choose so from the enumeration below.
     enum Progress {
+        CREATED{
+            @Override
+            public String toString () {
+                return "Created, not ready yet.";
+            }
+        },
+
         READY {
             @Override
             public String toString() {
-                return "Task ready to start";
+                return "Ready to start";
             }
         },
+
         EXECUTING {
             @Override
             public String toString() {
-                return "Task in Progress";
+                return "In progress";
             }
         },
+
         FINISHED {
             @Override
             public String toString() {
-                return "Task finished!";
+                return "Finished!";
+            }
+        },
+
+        ONHOLD {
+            @Override
+            public String toString() {
+                return "Put on hold.";
             }
         }
     }
 
     public Status(Progress currentStatus) {
         this.currentStatus = currentStatus;
+        System.out.println(currentStatus.toString());
     }
 
     public Status () {
-        this.currentStatus = Progress.READY;
+        this.currentStatus = Progress.CREATED;
     }
+
+    public Progress getProgress () {return this.currentStatus;}
 
     public void printStatus () {
         System.out.println(this.currentStatus);

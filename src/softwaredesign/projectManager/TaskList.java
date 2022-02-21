@@ -53,8 +53,20 @@ public class TaskList {
         if (copiedTaskList.containsKey(oldTaskId)) {
             copiedTaskList.remove(oldTaskId);
         }
-        else {System.out.println("Task not found");}
+        else {System.err.println("Task not found");}
         return new TaskList(this.name, copiedTaskList);
+    }
+
+    public List<Task> getTaskList() {
+        return new ArrayList<>(tasks.values());
+    }
+
+    public TaskList setTaskList (List<Task> tasks) {
+        Map<UUID, Task> updatedTasklist = new HashMap<>();
+        for (Task currentTask: tasks){
+            updatedTasklist.put(currentTask.getUuid(), currentTask);
+        }
+        return new TaskList(this.name, updatedTasklist);
     }
 
     public UUID getUuid() {

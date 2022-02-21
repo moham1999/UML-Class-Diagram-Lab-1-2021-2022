@@ -36,7 +36,7 @@ public class test {
             List<Employee> assignedEmployees = new ArrayList<>();
             Collections.shuffle(employees);
             assignedEmployees.add(employees.get(0));
-            tasks.add(new Task (currentTaskName, 0d, assignedEmployees, new Status(Status.Progress.READY), skills) );
+            tasks.add(new Task (currentTaskName, 0d, assignedEmployees, skills) );
         }
         return tasks;
     }

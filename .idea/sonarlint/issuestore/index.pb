@@ -15,3 +15,9 @@ _
 .src/softwaredesign/projectManager/Project.java,6/0/60835281a10a052404febca1b3c9cbb7ef0d4b70
 _
 /src/softwaredesign/projectManager/TaskList.java,f/0/f0febd3c9484baa5837dc001f01a054b4cd22a1d
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+^
+.src/softwaredesign/projectManager/Manager.java,0/6/068dd8f6ca6e362c605ded0c60184f7c71466702
+]
+-src/softwaredesign/projectManager/Worker.java,9/b/9bcb7b0f29b21c9d3c456ff046c4a3eccdbd3a41
