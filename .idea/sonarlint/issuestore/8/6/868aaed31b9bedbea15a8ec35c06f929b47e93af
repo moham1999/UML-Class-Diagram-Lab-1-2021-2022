@@ -1,5 +1,10 @@
 
-e	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÎ °ùÿÿÿÿ
-K
-java:S5960"+Remove this assertion from production code.(ëÑ¨¯ûÿÿÿÿ8êÃ§î/
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å›¤8ıÀ§î/
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÎ °ùÿÿÿÿ
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å›¤8ıÀ§î/
+H
+java:S14810"+Remove this unused "status" local variable.(ìˆ³È8íÜÖçñ/
+W
+java:S1117":Rename "skills" which hides the field declared at line 53.(—³“à8íÜÖçñ/
+U	java:S106D"9Replace this use of System.out or System.err by a logger.(ÓÇ©ì8íÜÖçñ/
+V
+java:S1117!"9Rename "tasks" which hides the field declared at line 13.(ËŒÈé8íÜÖçñ/

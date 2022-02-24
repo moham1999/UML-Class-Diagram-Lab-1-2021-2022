@@ -1,4 +1,8 @@
 
-L
-java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8ƒÙß³ï/
+Z	java:S106O"9Replace this use of System.out or System.err by a logger.(•Ÿ„Öşÿÿÿÿ8´‡¦éñ/
+Z	java:S106e"9Replace this use of System.out or System.err by a logger.(”–úÿøÿÿÿÿ8ñ‘åèñ/
+U	java:S106E"9Replace this use of System.out or System.err by a logger.(ò¹ßÂ8»†Úèñ/
+Z	java:S106a"9Replace this use of System.out or System.err by a logger.(²¦šøÿÿÿÿÿ8»†Úèñ/
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å›¤
+R
+java:S2209{"5Change this instance-reference to a static reference.(áÜêå8ôÛÚèñ/

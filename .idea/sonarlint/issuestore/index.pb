@@ -21,3 +21,5 @@ _
 .src/softwaredesign/projectManager/Manager.java,0/6/068dd8f6ca6e362c605ded0c60184f7c71466702
 ]
 -src/softwaredesign/projectManager/Worker.java,9/b/9bcb7b0f29b21c9d3c456ff046c4a3eccdbd3a41
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
