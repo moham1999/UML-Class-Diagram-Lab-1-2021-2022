@@ -23,3 +23,5 @@ _
 -src/softwaredesign/projectManager/Worker.java,9/b/9bcb7b0f29b21c9d3c456ff046c4a3eccdbd3a41
 S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
+a
+1src/softwaredesign/projectManager/QualStatus.java,0/9/092b2605b2b2c932baacb3ac7b9fd5011916d7ab

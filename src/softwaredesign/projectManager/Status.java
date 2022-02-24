@@ -48,6 +48,9 @@ public class Status {
         this.currentStatus = currentStatus;
         System.out.println(currentStatus.toString());
     }
+    public Status (Status status) {
+        this.currentStatus = status.currentStatus;
+    }
 
     public Status () {
         this.currentStatus = Progress.CREATED;

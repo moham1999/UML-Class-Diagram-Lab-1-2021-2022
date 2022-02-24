@@ -8,6 +8,10 @@ final public class Skill {
         this.name = name;
     }
 
+    public Skill (Skill skill) {
+        this.name = skill.getName();
+    }
+
     public String getName() {
         return this.name;
     }

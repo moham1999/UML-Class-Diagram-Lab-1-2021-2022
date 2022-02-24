@@ -119,7 +119,7 @@ public class Project {
         else if (tasksAssigned() && isStarted() && !fundsAvailable() && !allTasksFinished()){
             return new Status(Status.Progress.ONHOLD);
         }
-        else if (tasksAssigned() && isStarted() && fundsAvailable() && !allTasksFinished()){
+        else if (tasksAssigned() && isStarted() && fundsAvailable()){
             return new Status(Status.Progress.EXECUTING);
         }
         else if (tasksAssigned() && !isStarted()) {

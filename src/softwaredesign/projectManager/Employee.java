@@ -27,6 +27,13 @@ public class Employee {
         this.skills = new ArrayList<>();
     }
 
+    public Employee(Employee employee) {
+        this.name = employee.getName();
+        this.workedHours = employee.getHours();
+        this.skills = employee.getSkills();
+        this.uuid = employee.getUuid();
+    }
+
     public Employee setName(String newName) {
         return new Employee(newName, this.workedHours, this.skills);
     }

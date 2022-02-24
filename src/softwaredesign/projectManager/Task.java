@@ -3,13 +3,14 @@ package softwaredesign.projectManager;
 import java.util.*;
 
 public class Task {
-    private final Status status;
-    private final String name;
+    private Status status;
+    private String name;
     private static final UUID uuid = UUID.randomUUID();
-    private final Map<Employee, QualStatus> assignedEmployees;
-    private final List<Skill> requiredSkills;
-    private final TaskList dependentTasks;
-    private final double timeSpent;
+    private Map<Employee, QualStatus> assignedEmployees;
+    private List<Skill> requiredSkills;
+    private TaskList dependentTasks;
+    private double timeSpent;
+    private boolean taskFinished;
 
     //Used mostly to update a variable within the class, or create an instance from scratch.
     public Task (String name, Map<Employee, QualStatus> assignedEmployees, Status status, List<Skill> requiredSkills, double timeSpent, TaskList dependentTasks) {
@@ -19,6 +20,7 @@ public class Task {
         this.requiredSkills = requiredSkills;
         this.timeSpent = timeSpent;
         this.dependentTasks = dependentTasks;
+//        this.taskFinished =
     }
 
     //Used mostly to create an instance of this class from object.
@@ -40,81 +42,68 @@ public class Task {
         this.dependentTasks = new TaskList("Dependent Tasks");
     }
 
-
     public String getTaskName () {
-        return this.name;
+        return String.copyValueOf(this.name.toCharArray());
     }
 
     //setAssignedEmployee instead of assign employee
-    public Task setAssignedEmployees (Map<Employee, QualStatus> setAssignedEmployees) {
-        return new Task(this.name, setAssignedEmployees, this.status, this.requiredSkills, this.timeSpent, this.dependentTasks);
+    public void setAssignedEmployees (Map<Employee, QualStatus> setAssignedEmployees) {
+        this.assignedEmployees = new HashMap<>(setAssignedEmployees);
     }
 
     public List<Employee> getAssignedEmployees () {
         return new ArrayList<>(this.assignedEmployees.keySet());
     }
 
-    public Task assignEmployeeToTask (Employee employee) {
+    public void assignEmployeeToTask (Employee employee) {
+        employee = new Employee(employee);
         if (isAssigned(employee)) {
-            System.err.println("Employee already assigned");
-            return this;
+            System.err.println("Employee already assigned. ");
         }
         else {
-            Map<Employee, QualStatus> copiedAssignedEmployees = new HashMap<>(this.assignedEmployees);
             if (isQualified(employee)) {
-                copiedAssignedEmployees.put(employee, QualStatus.QUALIFIED);
+                assignedEmployees.put(employee, QualStatus.QUALIFIED);
             }
             else {
                 System.err.println(employee.getName() + " is not qualified to perform this task." + employee.getName() + " not assigned to task");
-                copiedAssignedEmployees.put(employee, QualStatus.UNQUALIFIED);
+                assignedEmployees.put(employee, QualStatus.UNQUALIFIED);
             }
-            return new Task(this.name, copiedAssignedEmployees, this.status, this.requiredSkills, this.timeSpent, this.dependentTasks);
         }
     }
 
     //method to replace any of the given lists? like to replace the assigned employee list
-    public List<Skill> getRequiredSkills () { return this.requiredSkills;}
+    public List<Skill> getRequiredSkills () { return Collections.unmodifiableList(this.requiredSkills);}
 
-    public Task addRequiredSkill (Skill skill) {
-        List<Skill> copiedRequiredSkill = new ArrayList<> (this.requiredSkills);
-        copiedRequiredSkill.add(skill);
-        return new Task(this.name , this.assignedEmployees, this.status, copiedRequiredSkill, this.timeSpent, this.dependentTasks);
+    public void addRequiredSkill (Skill skill) {
+        skill = new Skill(skill);
+        this.requiredSkills.add(skill);
     }
 
-    public Task setStatus (Status newStatus) {
+    public void setStatus (Status newStatus) {
         //Could add switch statement here, but since it's just two cases, this suffices.
-        if (newStatus.getProgress() != Status.Progress.CREATED && !taskAssigned()) {
-                System.err.println("No employees assigned to task. Status not changed");
-                return this;
-        }
-        else if (newStatus.getProgress() == Status.Progress.EXECUTING && !started()) {
-            System.err.println("No amount of hours worked on this task have been logged. Status not changed");
-            return this;
-        }
-        return new Task (this.name, this.assignedEmployees, status, this.requiredSkills, this.timeSpent, this.dependentTasks);
+        if (decideStatus().getProgress() == newStatus.getProgress()) this.status = new Status(status);
     }
 
     public Status getStatus () {
-        return this.status;
+        return new Status(this.status);
     }
 
     public void printStatus() {
         this.status.printStatus();
     }
 
-    public double getTimeSpent() {return this.timeSpent;}
+    public double getTimeSpent() {return new Double(timeSpent);}
 
-    public Task setTimeSpent(double timeSpent) {
-        return new Task (this.name, this.assignedEmployees, this.status, this.requiredSkills, timeSpent, this.dependentTasks);
-
+    public void setTimeSpent(double timeSpent) {
+        this.timeSpent = Double.valueOf(timeSpent);
     }
 
     public List<Task> getDependentTasks () {
-        return this.dependentTasks.getTaskList();
+        return Collections.unmodifiableList(this.dependentTasks.getTaskList());
     }
 
-    public Task setDependentTasks (List<Task> dependentTasks) {
-        return new Task(this.name, this.assignedEmployees, this.status, this.requiredSkills, this.timeSpent, this.dependentTasks.setTaskList(dependentTasks));
+    public void setDependentTasks (List<Task> dependentTasks) {
+        this.dependentTasks.setTaskList(dependentTasks);
     }
 
     public UUID getUuid() {
@@ -126,9 +115,11 @@ public class Task {
     }
 
     private boolean isAssigned (Employee employee) {
-        return this.assignedEmployees.containsKey(employee);
+        for (Employee currentEmployee: assignedEmployees.keySet()) {
+            if(currentEmployee.getUuid().equals(employee.getUuid())) return true;
+        }
+        return false;
     }
-
     public boolean started () {
         return this.timeSpent > 0;
     }
@@ -149,10 +140,16 @@ public class Task {
         return !dependentTasks.getTaskList().isEmpty();
     }
 
+    private boolean taskFinished() {return (taskExecuting() && !dependentTasksRemain());}
+
+    private boolean taskOnHold() {return (taskExecuting() && dependentTasksRemain());}
+
+    private boolean taskExecuting() { return (taskAssigned() && started()); }
+
     private Status decideStatus () {
-        if (taskAssigned() && started() && !dependentTasksRemain() && allQualified()) return new Status(Status.Progress.FINISHED);
-        else if (taskAssigned() && started() && (dependentTasksRemain() || allQualified())) return new Status(Status.Progress.ONHOLD);
-        else if (taskAssigned() && started()) return new Status(Status.Progress.EXECUTING);
+        if (taskFinished()) return new Status(Status.Progress.FINISHED);
+        else if (taskOnHold()) return new Status(Status.Progress.ONHOLD);
+        else if (taskExecuting()) return new Status(Status.Progress.EXECUTING);
         else if (taskAssigned()) return new Status(Status.Progress.READY);
         else return new Status(Status.Progress.CREATED);
     }
