@@ -14,6 +14,7 @@ public class test {
 
     //Use string array to create and add skills to an arrayList.
     public List<Skill> createSkillList (String[] skillNames) {
+        System.out.println("Creating skills");
         List<Skill> skills = new ArrayList<>();
         for (String skill : skillNames) {
             skills.add(new Skill(skill));
@@ -22,6 +23,7 @@ public class test {
     }
 
     public List<Employee> createEmployeeList (List<Skill> skills, String[] employeeNames) {
+        System.out.println("Creating Employee list");
         List<Employee> employeesList = new ArrayList<>();
         for (String currentName : employeeNames) {
             employeesList.add(new Employee(currentName, 0d,  skills));
@@ -29,27 +31,19 @@ public class test {
         return employeesList;
     }
 
-    public List<Task> createTasks (List<Employee> employees, String[] tasksNames, List<Skill> skills) {
-        List<Task> tasks = new ArrayList<>();
+    public List<Task> createTasks (List<Employee> employeesList, String[] tasksNames, List<Skill> skills) {
+        System.out.println("Creating tasks");
+        List<Task> tasksList = new ArrayList<>();
+        Map<Employee, QualStatus> employees = new HashMap<>();
+        employeesList.forEach(x-> employees.put(x, QualStatus.QUALIFIED));
+        TaskList dependentTasks = new TaskList("Dependent Tasks");
 
         for (String currentTaskName : tasksNames) {
-            List<Employee> assignedEmployees = new ArrayList<>();
-            Collections.shuffle(employees);
-            assignedEmployees.add(employees.get(0));
-//            tasks.add(new Task (currentTaskName, 0d, assignedEmployees, skills) );
+            tasksList.add(new Task(currentTaskName, employees, new Status(Status.Progress.CREATED), skills, 0d, dependentTasks));
         }
-        return tasks;
+        return tasksList;
     }
 
-//    public List<TaskList> createTaskList
-
-    public List<Status> createStatus (String[] statuses) {
-        List<Status> statusList = new ArrayList<>();
-        for (String status : statuses) {
-            statusList.add(new Status(Status.Progress.READY));
-        }
-        return statusList;
-    }
     List<Skill> skills = new ArrayList<>(createSkillList(skillNames));
     List<Employee> employees = new ArrayList<>(createEmployeeList(skills, employeeNames));
     List<Task> tasksList = new ArrayList<>(createTasks(employees, tasks, skills));
@@ -68,7 +62,5 @@ public class test {
            System.out.println(currentSkill.getName());
        }
    }
-
-//   @Test
 
 }

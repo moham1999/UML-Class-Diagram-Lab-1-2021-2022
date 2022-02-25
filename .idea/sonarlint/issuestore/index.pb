@@ -25,3 +25,5 @@ S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 a
 1src/softwaredesign/projectManager/QualStatus.java,0/9/092b2605b2b2c932baacb3ac7b9fd5011916d7ab
+f
+6src/softwaredesign/projectManager/EmployeeExample.java,e/e/ee93d4b90818b9e853595edf13e4eddfd8565376

@@ -2,7 +2,7 @@ package softwaredesign.projectManager;
 
 final public class Skill {
     //Be sure to mention the difference between this and status. (particularly the enumeration)
-    private final String name;
+    private String name;
 
     public Skill(String name) {
         this.name = name;
@@ -16,5 +16,5 @@ final public class Skill {
         return this.name;
     }
 
-    public Skill setName(String newSkill) {return new Skill(newSkill);}
+    public void setName(String newSkill) {this.name = String.copyValueOf(newSkill.toCharArray());}
 }

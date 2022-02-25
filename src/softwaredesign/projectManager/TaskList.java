@@ -6,12 +6,12 @@ import java.util.*;
 public class TaskList {
     //can use map to with uuid .
 
-    private final String name;
+    private String name;
 
     //Changed from list to task
-    private final Map<UUID, Task> tasks;
+    private Map<UUID, Task> tasks;
 
-    private final UUID uuid;
+    private UUID uuid;
 
     public TaskList(String name, Map<UUID, Task> tasks) {
         this.name = name;
@@ -25,48 +25,50 @@ public class TaskList {
         this.tasks = new HashMap<>();
     }
 
-    public TaskList addTask(Task task) {
-        Map<UUID, Task> copiedTaskList = new HashMap<>(this.tasks);
-        copiedTaskList.put(UUID.randomUUID(), task);
-        return new TaskList(this.name, copiedTaskList);
+    public TaskList(TaskList taskList) {
+        this.name = taskList.name;
+        this.uuid = taskList.uuid;
+        this.tasks = taskList.tasks;
+    }
+
+    public void addTask(Task task) {
+        task = new Task(task);
+        tasks.put(task.getUuid(), task);
     }
 
     public String getName() {
-        return this.name;
+        return String.copyValueOf(this.name.toCharArray());
     }
 
     public boolean contains(UUID taskId) {
         return this.tasks.containsKey(taskId);
     }
 
-    public TaskList replaceTask(UUID oldTaskId, Task newTask) {
-        Map<UUID, Task> copiedTaskList = new HashMap<>(this.tasks);
-        if (copiedTaskList.containsKey(oldTaskId)) {
-            copiedTaskList.remove(oldTaskId);
-            copiedTaskList.put(UUID.randomUUID(), newTask);
+    public void replaceTask(UUID oldTaskId, Task newTask) {
+        if (tasks.containsKey(oldTaskId)) {
+            newTask = new Task(newTask);
+            tasks.remove(oldTaskId);
+            tasks.put(newTask.getUuid(), newTask);
         }
-        return new TaskList(this.name, copiedTaskList);
     }
 
-    public TaskList removeTask(UUID oldTaskId) {
-        Map<UUID, Task> copiedTaskList = new HashMap<>(this.tasks);
-        if (copiedTaskList.containsKey(oldTaskId)) {
-            copiedTaskList.remove(oldTaskId);
+    public void removeTask(UUID oldTaskId) {
+        if (tasks.containsKey(oldTaskId)) {
+            tasks.remove(oldTaskId);
         }
         else {System.err.println("Task not found");}
-        return new TaskList(this.name, copiedTaskList);
     }
 
     public List<Task> getTaskList() {
         return new ArrayList<>(tasks.values());
     }
 
-    public TaskList setTaskList (List<Task> tasks) {
-        Map<UUID, Task> updatedTasklist = new HashMap<>();
+    public void setTaskList (List<Task> tasks) {
+        this.tasks = new HashMap<>();
         for (Task currentTask: tasks){
-            updatedTasklist.put(currentTask.getUuid(), currentTask);
+            currentTask = new Task(currentTask);
+            this.tasks.put(currentTask.getUuid(), currentTask);
         }
-        return new TaskList(this.name, updatedTasklist);
     }
 
     public UUID getUuid() {

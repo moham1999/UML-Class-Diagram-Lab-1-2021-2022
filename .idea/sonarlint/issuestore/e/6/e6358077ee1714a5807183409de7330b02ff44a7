@@ -1,14 +1,24 @@
 
-Z	java:S106["9Replace this use of System.out or System.err by a logger.(”–úÿøÿÿÿÿ8ñ‘åèñ/
-Z	java:S106D"9Replace this use of System.out or System.err by a logger.(•Ÿ„Öşÿÿÿÿ8´‡¦éñ/
+j
+java:S5738`"HRemove this call to a deprecated method, it has been marked for removal.(‘û‡ÿÿÿÿÿ8Õ—‡İò/
+>
+java:S2153c"!Remove the boxing of "timeSpent".(°åéÒ8™¨Šİò/
+Z	java:S106E"9Replace this use of System.out or System.err by a logger.(•Ÿ„Öşÿÿÿÿ8´‡¦éñ/
+R
+java:S1068"0Remove this unused "taskFinished" private field.(Ê¾îˆúÿÿÿÿ8¨ëšÛò/
+O
+java:S1172"-Remove this unused method parameter "status".(Ùá”Âÿÿÿÿÿ8îëŞò/
+T
+java:S1144„"1Remove this unused private "allQualified" method.(‡›š½ÿÿÿÿÿ8å¿–Ûò/
+S
+java:S1144ˆ"0Remove this unused private "isDependent" method.(ÇˆÅÚúÿÿÿÿ8äÍ“Àò/
+Z	java:S106>"9Replace this use of System.out or System.err by a logger.(Â ·ûÿÿÿÿÿ8»†Úèñ/
+B
+java:S2129`" Remove this "Double" constructor(‘û‡ÿÿÿÿÿ8Õ—‡İò/
+R
+java:S2209o"5Change this instance-reference to a static reference.(áÜêå8ôÛÚèñ/
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å›¤
 V
-java:S1172""4Remove this unused method parameter "estimatedTime".(øıä÷ùÿÿÿÿ8¬Ÿ·¿ò/
+java:S1172"4Remove this unused method parameter "estimatedTime".(ÃÁƒûÿÿÿÿÿ8ú·¿ò/
 V
-java:S1172"4Remove this unused method parameter "estimatedTime".(ÃÁƒûÿÿÿÿÿ8ú·¿ò/
-R
-java:S2209y"5Change this instance-reference to a static reference.(áÜêå8ôÛÚèñ/
-U	java:S106;"9Replace this use of System.out or System.err by a logger.(ò¹ßÂ8»†Úèñ/
-Z	java:S106W"9Replace this use of System.out or System.err by a logger.(²¦šøÿÿÿÿÿ8»†Úèñ/
-S
-java:S1144"0Remove this unused private "isDependent" method.(ÇˆÅÚúÿÿÿÿ8äÍ“Àò/
+java:S1172$"4Remove this unused method parameter "estimatedTime".(øıä÷ùÿÿÿÿ8¬Ÿ·¿ò/

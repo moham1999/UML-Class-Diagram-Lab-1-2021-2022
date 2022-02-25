@@ -20,17 +20,7 @@ public class Task {
         this.requiredSkills = requiredSkills;
         this.timeSpent = timeSpent;
         this.dependentTasks = dependentTasks;
-//        this.taskFinished =
-    }
-
-    //Used mostly to create an instance of this class from object.
-    public Task (String name, double estimatedTime, Map<Employee, QualStatus> assignedEmployees, List<Skill> requiredSkills, TaskList dependentTasks) {
-        this.name = name;
-        this.assignedEmployees = assignedEmployees;
-        this.status = decideStatus();
-        this.requiredSkills = requiredSkills;
-        this.timeSpent = 0d;
-        this.dependentTasks = dependentTasks;
+        this.taskFinished = false;
     }
 
     public Task (String name, double estimatedTime, List<Skill> requiredSkills) {
@@ -40,6 +30,17 @@ public class Task {
         this.requiredSkills = requiredSkills;
         this.timeSpent = 0d;
         this.dependentTasks = new TaskList("Dependent Tasks");
+        this.taskFinished = false;
+    }
+
+    public Task (Task task) {
+        this.name = task.name;
+        this.assignedEmployees = task.assignedEmployees;
+        this.status = task.status;
+        this.requiredSkills = task.requiredSkills;
+        this.timeSpent = task.timeSpent;
+        this.dependentTasks = task.dependentTasks;
+        this.taskFinished = false;
     }
 
     public String getTaskName () {
@@ -47,8 +48,9 @@ public class Task {
     }
 
     //setAssignedEmployee instead of assign employee
-    public void setAssignedEmployees (Map<Employee, QualStatus> setAssignedEmployees) {
-        this.assignedEmployees = new HashMap<>(setAssignedEmployees);
+    public void setAssignedEmployees (Map<Employee, QualStatus> assignedEmployees) {
+        this.assignedEmployees = new HashMap<>();
+        assignedEmployees.forEach((x,y)-> this.assignedEmployees.put(new Employee(x), y));
     }
 
     public List<Employee> getAssignedEmployees () {
