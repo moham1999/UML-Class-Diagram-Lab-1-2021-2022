@@ -1,15 +1,26 @@
 
-g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÎ °ùÿÿÿÿ
+Z	java:S106E"9Replace this use of System.out or System.err by a logger.(ùé¦şüÿÿÿÿ8»şó/
+Z	java:S106G"9Replace this use of System.out or System.err by a logger.(Î»éñúÿÿÿÿ8»ìşó/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(‹¾ùÓ8¹ğÎó/
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å›¤8ıÀ§î/
-Q
-java:S1481#"4Remove this unused "currentTaskName" local variable.(‹‘Ä­8²İò/
-J
-java:S1172 "-Remove this unused method parameter "skills".(µğ8²İò/
-V
-java:S1117!"9Rename "tasks" which hides the field declared at line 13.(ËŒÈé8íÜÖçñ/
-X	java:S125'"<This block of commented-out lines of code should be removed.(€ÔÊî8²İò/
+U	java:S106$"9Replace this use of System.out or System.err by a logger.(¹îõŒ8¬¾Ğó/
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÎ °ùÿÿÿÿ
 W
-java:S1117":Rename "skills" which hides the field declared at line 53.(—³“à8íÜÖçñ/
-U	java:S106D"9Replace this use of System.out or System.err by a logger.(ÓÇ©ì8íÜÖçñ/
-H
-java:S14810"+Remove this unused "status" local variable.(ìˆ³È8íÜÖçñ/
+java:S1117":Rename "skills" which hides the field declared at line 48.(—³“à8íÜÖçñ/
+T	java:S106O"9Replace this use of System.out or System.err by a logger.(¤ì“n8ìó/
+[
+java:S1854P"?Remove this useless assignment to local variable "testSubject".(€ä)8½¶ó/
+U	java:S106W"9Replace this use of System.out or System.err by a logger.(ÓÇ©ì8íÜÖçñ/
+Z
+java:S1117&"=Rename "employees" which hides the field declared at line 49.(Œ±¸æ8Ò˜Êó/
+Z	java:S106I"9Replace this use of System.out or System.err by a logger.(†áªğùÿÿÿÿ8ãµˆó/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(Èª‡½8¹ğÎó/
+Z	java:S106A"9Replace this use of System.out or System.err by a logger.(¼ä‚‹ûÿÿÿÿ8ìö†ó/
+l
+java:S1192C"JDefine a constant instead of duplicating this literal "Changing " 3 times.(ªşÊÍûÿÿÿÿ8»ìşó/
+L
+java:S1481P"0Remove this unused "testSubject" local variable.(€ä)8½¶ó/
+Z
+java:S1117%"=Rename "tasksList" which hides the field declared at line 50.(ËÑ8©î›ó/
+Z	java:S106C"9Replace this use of System.out or System.err by a logger.(ªşÊÍûÿÿÿÿ8»şó/
+Z	java:S106?"9Replace this use of System.out or System.err by a logger.(õ›£„ıÿÿÿÿ8ù—éó/

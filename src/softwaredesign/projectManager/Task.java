@@ -81,9 +81,12 @@ public class Task {
         this.requiredSkills.add(skill);
     }
 
-    public void setStatus (Status newStatus) {
+    public void setStatus (Status.Progress progress) {
         //Could add switch statement here, but since it's just two cases, this suffices.
-        if (decideStatus().getProgress() == newStatus.getProgress()) this.status = new Status(status);
+        if (decideStatus().getProgress() == progress) this.status = new Status(progress);
+        else {
+            System.err.println("Status not changed, requirements not met.");
+        }
     }
 
     public Status getStatus () {
@@ -109,7 +112,7 @@ public class Task {
     }
 
     public UUID getUuid() {
-        return this.uuid;
+        return uuid;
     }
 
     private boolean taskAssigned () {
